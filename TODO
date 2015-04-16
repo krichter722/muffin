@@ -1,0 +1,31 @@
+Muffin TODO
+
+General:
+
+* More documenation.
+
+* Maybe implement a disk cache.
+
+* Proxy authentication
+
+* Content-length padding
+
+* Optional Keep-alive with browser
+
+Possible filters:
+
+* text/plain -> text/html converter
+
+* Filter multipart content separately.
+
+* Create html index of zip archives.
+
+* Shrink images.
+
+* Cookies - modify, replace, etc.
+
+* PICS support - http://www.w3.org/PICS/
+
+* Basic authentication
+
+$Id: TODO,v 1.4 1999/03/12 15:47:28 boyns Exp $

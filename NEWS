@@ -1,0 +1,260 @@
+Muffin NEWS - user-visible changes
+
+Changes since 0.9.2:
+
+* Automatically uncompress gzip encoded content so it can be filtered.
+  This can be disabled with muffin.dontUncompress=true.
+
+* Support for HTTP PUT.
+
+* Support for remote configuration files.  Almost any place you can
+  specify a filename you can now also use a URL.  This can be
+  used for remote NoThanks killfiles, autoconfig, *.conf files, etc.
+
+* Disable/Enable logging from the Options window.
+
+* Added log file rotation configured using muffin.maxLogFileSize and
+  muffin.maxLogFileHistory which by default are 1MB and 10.
+
+* Automatically set user directory depending on the operating system.
+  Windows will use user.dir and all others will use user.home.
+
+* Support for executable muffin.jar.
+
+Changes since 0.9.1:
+
+* Fix for URLs with user@host: from Kai Engert.
+
+* Added NoThanks killfile commands: script and header.
+  script can be used to perform regexp-based pattern substitution
+  on javascript code.  header can be used to perform regexp-based
+  pattern substitution on HTTP headers.  See NoThanks.txt for more
+  details.
+
+* Added muffin.dontLogFilters property to disable filter logs
+  in the muffin log file.
+
+* Better Kaffe support.
+
+* Fixed Decaf vs. slashdot bad html bug reported by Vladimir Klebanov.
+
+Changes since 0.9:
+
+* NoThanks frame resizes better.
+
+* Added NoThanks killfile "options" command with support for reg-case and 
+  reg-icase to turn on and off regular expression case sensitivity.
+  See NoThanks.txt for more details.
+
+* Added back Suspend/Resume of proxy service; now accessible via the
+  File menu.
+
+Changes since 0.8.1:
+
+* New version of ImageKill filter from Heinrich Opgenoorth.
+
+* New Translate filter from Mike Baroukh.  Translate can be
+  used to implement a reverse proxy; similar to the apache
+  ProxyPass and ProxyPassReverse directives.
+
+* Include dnsjava library which can be used by Muffin for
+  all DNS lookups.  Nameservers are configured in the Options
+  window and/or the muffin.nameservers property.
+
+* All muffin.* preferences are now stored in ~/Muffin/muffin.props.
+  muffin.* preferences found in other files will be ignored.
+  Users upgrading from previous versions may want to move all
+  muffin.* previous from default.conf to muffin.props to preserve
+  previous settings.  Also note that the muffin.enabledFilters
+  property has been renamed to FilterManager.enabledFilters.
+
+* Support for reusable threads. 
+
+* Added Edit menu and include Disable Filtering in File menu.
+
+* upgraded to dnsjava-1.0.2 and gnu.regexp-1.0.8.
+
+* Fixed -dir command line option.
+
+Changes since 0.8:
+
+* Upgraded to GNU regexp 1.0.7.
+
+Changes since 0.7:
+
+* New filter ImageKill written by Heinrich Opgenoorth.  This filter
+  can block images based on their width/height ratio.
+
+* Mac install instructions from Dave Caplinger.
+
+* Fixed AnimationKiller bug which made netscape do bad things, like
+  crash.
+
+* Uses GNU regexp 1.0.6.
+
+* Browser KeepAlive support is now optional.  Turning off KeepAlive
+  should make Muffin appear to be faster.
+
+* Double clicking in the Muffin progress bar display will toggle
+  a normal and mini display mode -- good for saving desktop space.
+
+* New filter NoCode written by Neil Hodgson.  This filter
+  can remove Java, JavaScript, VBScript, and other languages
+  such as Python and Perl.  Encoded scripts can also be removed.
+
+* Muffin now logs all accesses in ~/Muffin/muffin.log.  This file
+  uses the common log format along with some extra stuff to display
+  filter results.
+
+* Removed the Logger filter.
+
+* Fixed the Muffin POST bug!  Thanks Jonathan Davis.
+
+* Added --bindaddress command line option from Jonathan Davis.
+
+* Only do DNS lookups when necessary and instead display IP addresses.
+  This fixes problems with Muffin hanging doing DNS lookups.
+
+Changes since 0.6:
+
+* DocumentInfo can be located top/bottom, aligned left/right, and
+  has a preferences window.  Custom HTML can be include before and
+  after the info.
+
+* Remote admin (http://muffinhost:51966/) now can access all muffin
+  configurations.
+
+* Muffin can now proxy SSL (https) and connect to another SSL proxy.
+
+* Filter help text available in filter windows and remote admin.
+
+* Fixed HTML parsing bug which converted ALT="" to ALT.
+
+* HTTP/1.1 persistent server connections, pipelining, and "chunked"
+  Transfer-Encoding support.
+
+* Some support for HTTP/0.9.
+
+* Better handling of <script> tags.
+
+* New filter EmptyFont.
+
+* Configurable foreground and background colors.
+
+* New HttpFilter interface.  This allows a filter to act like an
+  HTTP server.  These filters can generate HTTP replies as well
+  as content and can intercept any HTTP request.
+
+* New filter History.  Currently maintains a persistent history of all
+  HTTP requests.  This history can be displayed with:
+      http://org.doit.muffin.filter.History/
+  This filter is functional but incomplete.
+
+* Remote admin basic authentication support.
+
+* Improved (faster) regular expression support using gnu.regexp.
+
+* Improved option parsing support using gnu.getopt.
+
+* Referer.allowSameDomain option.
+
+* HostnameExpander prefix and suffix options.
+
+* tagattr replace command supports $0..$9 substitution.
+
+* New filter Rewrite which rewrites URLs using regular expressions.
+
+Changes since 0.5:
+
+* New filters: HostnameExpander and ForwardedFor.
+
+* Proxy Keep-Alive support.
+
+* View menu.
+
+* Connections view.
+
+* Content filters use ObjectStreams.  HTML and other content
+  filtering should be much faster.
+
+* Multiple configurations.  Rename your old "preferences" file
+  to "default.conf", the name of the default configuration.
+
+* Automatic configuration switching based on URL patterns.
+  Setup with the "autoconfig" file which contains regex and
+  config name pairs.  When a match isn't found the default
+  config will be used.
+
+* -conf command-line option to select a different default config.
+
+* Configuration window for configuring configurations.  Autoconfig
+  file can also be modified here.  Press the "Example" button for
+  a real life autoconfig example.
+
+* NoThanks `tagattr' command.  See doc/filters/NoThanks.txt.
+
+* Threads frame.
+
+* Regular expression tester frame.
+
+* NoThanks killfiles can include other killfiles using `#include filename'.
+
+* Killfile is now editable in the NoThanks preferences window.
+
+* API: added Request.getClient method.
+
+* RFC: Fixed "unknown response from server" netscape error dialogs caused
+  by non-compliant http servers.
+
+* API: RedirectFilter interface for handling HTTP redirects in filters.
+
+Changes since 0.4:
+
+* New filters: Decaf, DocumentInfo, NoThanks, Secretary, Glossary,
+  Preview, and Painter.
+
+* Muffin classes and images can be contained in a single jar file.
+
+* More source documentation.
+
+* New source directory structure.
+
+* GNU autoconf for Unix systems.
+
+* Pass thru mechanism to disable all filtering.  Press the Muffin
+  icon to toggle pass thru.
+
+* Remote administration.  Connect directly to Muffin using
+  `http://muffinHost:muffinPort'.  Access is restricted
+  using muffin.adminAllow and muffin.adminDeny.
+
+* Preferences stored in user.home `Muffin' directory.  Also
+  includes -dir option to specify alternate directory.
+
+* Improved HTML parsing.
+
+* Filter documentation in doc/filter directory.
+
+* Display more information in the progress bars.
+
+* Added --with-tya configure option.
+
+Changes since 0.3:
+
+* New Filter API.
+
+* Content filtering via the ContentFilter interface.
+
+* A real proxy server is not required.  In fact, Muffin can
+  actually use another Muffin as a proxy.
+
+* A window system is no longer required.
+
+* Muffin and filter options can be saved across sessions.
+
+* See muffin.html.HtmlTokenizer and the Test filter for
+  work done so far on HTML filtering.
+
+* New web site http://muffin.doit.org/
+
+$Id: NEWS,v 1.17 2000/03/27 04:40:38 boyns Exp $
